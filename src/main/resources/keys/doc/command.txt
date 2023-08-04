@@ -1,0 +1,8 @@
+--- generate private key
+openssl genpkey -algorithm rsa -out private-key.pem
+
+--- generate public key
+openssl rsa -pubout -in private-key.pem -out public-key.pem
+
+--- encrypt private key #using password=passkey
+openssl pkcs8 -topk8 -inform PEM -outform PEM -v1 PBE-SHA1-3DES -in private-key.pem -out private-encrypted-key.pem
